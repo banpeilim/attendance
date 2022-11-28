@@ -3,8 +3,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
-from .models import Flight, Review, Attendance
-from .serializers import FlightSerializer
+from .models import Flight, Review, Attendance, Queue
+from .serializers import FlightSerializer, QueueSerializer
 from django.db.models import F
 from django.views.generic import TemplateView
 
@@ -61,3 +61,21 @@ def attendancePage(request):
     context = {'qs':qs}
 
     return render(request, 'attendance_page.html', context)
+
+
+
+@api_view(['POST'])
+def addQueue(request):
+ 
+    post_data = json.loads(request.body.decode("utf-8"))
+    name = post_data['name']
+    Queue.objects.create(name=name)
+
+    return JsonResponse({'foo':'bar'})
+
+
+@api_view(['GET'])
+def getQueue(request):
+    queue = Queue.objects.all()
+    serializers = QueueSerializer(queue, many=True)
+    return Response(serializers.data)

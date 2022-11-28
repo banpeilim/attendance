@@ -8,5 +8,7 @@ urlpatterns = [
     path('data-page/', views.dataPage.as_view(), name="data_page"),
     path('update-attendance/', views.updateAttendance, name="update_attendance"),
     path('attendance-page/', views.attendancePage, name="attendace_page"),
+    path('add-queue/', views.addQueue, name="add_queue"),
+    path('queue-data/', views.getQueue, name="queue"),
 
 ]
