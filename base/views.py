@@ -9,6 +9,7 @@ from django.db.models import F
 from django.views.generic import TemplateView
 
 
+
 # Create your views here.
 
 @api_view(['GET'])
@@ -52,3 +53,11 @@ def updateAttendance(request):
     return JsonResponse({'foo':'bar'})
 
 
+
+def attendancePage(request):
+
+    qs = Attendance.objects.all()
+    print(qs)
+    context = {'qs':qs}
+
+    return render(request, 'attendance_page.html', context)
