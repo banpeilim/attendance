@@ -10,5 +10,6 @@ urlpatterns = [
     path('attendance-page/', views.attendancePage, name="attendace_page"),
     path('add-queue/', views.addQueue, name="add_queue"),
     path('queue-data/', views.getQueue, name="queue"),
+    path('inventory-data/', views.getInventory, name="inventory_data"),
 
 ]

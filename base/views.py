@@ -3,8 +3,8 @@ from django.http import JsonResponse
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 import json
-from .models import Flight, Review, Attendance, Queue
-from .serializers import FlightSerializer, QueueSerializer
+from .models import Flight, Review, Attendance, Queue, Inventory
+from .serializers import FlightSerializer, QueueSerializer, InventorySerializer
 from django.db.models import F
 from django.views.generic import TemplateView
 
@@ -78,4 +78,12 @@ def addQueue(request):
 def getQueue(request):
     queue = Queue.objects.all()
     serializers = QueueSerializer(queue, many=True)
+    return Response(serializers.data)
+
+
+@api_view(['GET'])
+def getInventory(request):
+
+    inventory = Inventory.objects.all()
+    serializers = InventorySerializer(inventory, many=True)
     return Response(serializers.data)

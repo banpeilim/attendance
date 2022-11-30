@@ -34,3 +34,18 @@ class Queue(models.Model):
 
     def __str__(self):
         return self.name
+
+
+
+
+class Inventory(models.Model):
+    class Meta:
+        verbose_name_plural = "Inventories"
+    storeid = models.CharField(max_length=200, null=True, blank=True)
+    productid = models.CharField(max_length=200, null=True, blank=True)
+    udpip = models.CharField(max_length=200, null=True, blank=True)
+    stock = models.IntegerField(null=True, blank=True, default=0)
+    signal = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.storeid
